@@ -48,17 +48,17 @@ public class ThresholdFragment extends Fragment {
                     int interval = Integer.parseInt(edtInterval.getText().toString());
                     int burstTime = Integer.parseInt(edtBurstTime.getText().toString());
                     String threshold = "Threshold\n\n" + threshold(burstLimit, interval, burstTime) + "\nKbps";
-                    String maxLimit = "MaxLimit\n\n" + Calculate.MaxLimit(threshold(burstLimit, interval, burstTime)) + "\nKbps";
+                    String maxLimit = "Max Limit\n\n" + Calculate.MaxLimit(threshold(burstLimit, interval, burstTime)) + "\nKbps";
                     tvResultThreshold.setText(threshold);
                     tvResultMaxLimit.setText(maxLimit);
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                        Calculate.hideKeyboard(constraintLayout, Objects.requireNonNull(getActivity()));
+                        Calculate.hideKeyboardOnConstraintLayout(constraintLayout, Objects.requireNonNull(getActivity()));
                     }
                 } else {
                     Snackbar.make(root, "Pay attention to blank form!", Snackbar.LENGTH_SHORT)
                             .show();
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                        Calculate.hideKeyboard(constraintLayout, Objects.requireNonNull(getActivity()));
+                        Calculate.hideKeyboardOnConstraintLayout(constraintLayout, Objects.requireNonNull(getActivity()));
                     }
                 }
             }

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.text.TextUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -40,19 +41,22 @@ public class Calculate {
     }
 
     public static boolean isValidForm(EditText edt1, EditText edt2, EditText edt3) {
-        if (TextUtils.isEmpty(edt1.getText().toString()) &&
-                TextUtils.isEmpty(edt2.getText().toString())
-                        && TextUtils.isEmpty(edt3.getText().toString())) {
-            return false;
-        } else {
-            return true;
-        }
+        return !TextUtils.isEmpty(edt1.getText().toString()) && edt1.getText().toString().equals("0") &&
+                !TextUtils.isEmpty(edt2.getText().toString()) && edt1.getText().toString().equals("0")
+                && !TextUtils.isEmpty(edt3.getText().toString()) && edt1.getText().toString().equals("0");
     }
 
-    public static void hideKeyboard(ConstraintLayout constraintLayout, Activity activity) {
+    public static void hideKeyboardOnConstraintLayout(ConstraintLayout constraintLayout, Activity activity) {
         InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
         if (imm != null) {
             imm.hideSoftInputFromWindow(constraintLayout.getWindowToken(), 0);
+        }
+    }
+
+    public static void hideKeyboardOnLinearLayout(LinearLayout linearLayout, Activity activity) {
+        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (imm != null) {
+            imm.hideSoftInputFromWindow(linearLayout.getWindowToken(), 0);
         }
     }
 }
