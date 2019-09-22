@@ -41,9 +41,9 @@ public class Calculate {
     }
 
     public static boolean isValidForm(EditText edt1, EditText edt2, EditText edt3) {
-        return !TextUtils.isEmpty(edt1.getText().toString()) && edt1.getText().toString().equals("0") &&
-                !TextUtils.isEmpty(edt2.getText().toString()) && edt1.getText().toString().equals("0")
-                && !TextUtils.isEmpty(edt3.getText().toString()) && edt1.getText().toString().equals("0");
+        return !TextUtils.isEmpty(edt1.getText().toString()) &&
+                !TextUtils.isEmpty(edt2.getText().toString())
+                && !TextUtils.isEmpty(edt3.getText().toString());
     }
 
     public static void hideKeyboardOnConstraintLayout(ConstraintLayout constraintLayout, Activity activity) {
