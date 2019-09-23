@@ -26,8 +26,6 @@ public class ThresholdFragment extends Fragment {
     private int burstLimit;
     private int interval;
     private int burstTime;
-    private int threshold;
-    private int maxLImit;
     private String strThreshold;
     private String strMaxLimit;
     private EditText edtBurstLimit;
@@ -81,7 +79,7 @@ public class ThresholdFragment extends Fragment {
         btnClear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Calculate.clearAll(savedInstanceState, edtBurstLimit, edtInterval, edtBurstTime, tvResultThreshold, tvResultMaxLimit);
+                Calculate.clearAll(edtBurstLimit, edtInterval, edtBurstTime, tvResultThreshold, tvResultMaxLimit);
             }
         });
 

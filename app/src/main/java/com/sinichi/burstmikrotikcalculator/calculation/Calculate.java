@@ -39,8 +39,7 @@ public class Calculate {
         return (4 * threshold) / 3;
     }
 
-    public static void clearAll(Bundle savedInstance, EditText edt1, EditText edt2, EditText edt3, TextView tvResult1, TextView tvResult2) {
-        savedInstance.clear();
+    public static void clearAll(EditText edt1, EditText edt2, EditText edt3, TextView tvResult1, TextView tvResult2) {
         edt1.setText("");
         edt2.setText("");
         edt3.setText("");
