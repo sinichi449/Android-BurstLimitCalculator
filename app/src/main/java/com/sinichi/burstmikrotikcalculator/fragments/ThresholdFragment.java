@@ -23,20 +23,33 @@ import static com.sinichi.burstmikrotikcalculator.calculation.Calculate.threshol
 
 public class ThresholdFragment extends Fragment {
 
+    private int burstLimit;
+    private int interval;
+    private int burstTime;
+    private int threshold;
+    private int maxLImit;
+    private String strThreshold;
+    private String strMaxLimit;
+    private EditText edtBurstLimit;
+    private EditText edtInterval;
+    private EditText edtBurstTime;
+    private TextView tvResultThreshold;
+    private TextView tvResultMaxLimit;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
+                             ViewGroup container, final Bundle savedInstanceState) {
         final View root = inflater.inflate(R.layout.fragment_threshold, container, false);
 
-        // TODO: Add savedInstanceState to prevent data loss when rotating screen
         // Init components
-        final EditText edtBurstLimit = root.findViewById(R.id.edt_burst_limit);
-        final EditText edtInterval = root.findViewById(R.id.edt_interval);
-        final EditText edtBurstTime = root.findViewById(R.id.edt_burst_time);
+        edtBurstLimit = root.findViewById(R.id.edt_burst_limit);
+        edtInterval = root.findViewById(R.id.edt_interval);
+        edtBurstTime = root.findViewById(R.id.edt_burst_time);
         final ConstraintLayout constraintLayout = root.findViewById(R.id.constrainLayout);
         Button btnHitung = root.findViewById(R.id.btn_hitung);
         Button btnClear = root.findViewById(R.id.btn_clear);
-        final TextView tvResultThreshold = root.findViewById(R.id.tv_result_threshold);
-        final TextView tvResultMaxLimit = root.findViewById(R.id.tv_result_max_limit);
+        tvResultThreshold = root.findViewById(R.id.tv_result_threshold);
+        tvResultMaxLimit = root.findViewById(R.id.tv_result_max_limit);
+
 
         btnHitung.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,13 +57,14 @@ public class ThresholdFragment extends Fragment {
                 if (Calculate.isValidForm(edtBurstLimit,
                         edtInterval,
                         edtBurstTime)) {
-                    int burstLimit = Integer.parseInt(edtBurstLimit.getText().toString());
-                    int interval = Integer.parseInt(edtInterval.getText().toString());
-                    int burstTime = Integer.parseInt(edtBurstTime.getText().toString());
-                    String threshold = "Threshold\n\n" + threshold(burstLimit, interval, burstTime) + "\nKbps";
-                    String maxLimit = "Max Limit\n\n" + Calculate.MaxLimit(threshold(burstLimit, interval, burstTime)) + "\nKbps";
-                    tvResultThreshold.setText(threshold);
-                    tvResultMaxLimit.setText(maxLimit);
+                    burstLimit = Integer.parseInt(edtBurstLimit.getText().toString());
+                    interval = Integer.parseInt(edtInterval.getText().toString());
+                    burstTime = Integer.parseInt(edtBurstTime.getText().toString());
+                    strThreshold = "Threshold\n\n" + threshold(burstLimit, interval, burstTime) + "\nKbps";
+                    strMaxLimit = "Max Limit\n\n" + Calculate.MaxLimit(threshold(burstLimit, interval, burstTime)) + "\nKbps";
+                    tvResultThreshold.setText(strThreshold);
+                    tvResultMaxLimit.setText(strMaxLimit);
+
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
                         Calculate.hideKeyboardOnConstraintLayout(constraintLayout, Objects.requireNonNull(getActivity()));
                     }
@@ -67,7 +81,7 @@ public class ThresholdFragment extends Fragment {
         btnClear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Calculate.clearAll(edtBurstLimit, edtInterval, edtBurstTime, tvResultThreshold, tvResultMaxLimit);
+                Calculate.clearAll(savedInstanceState, edtBurstLimit, edtInterval, edtBurstTime, tvResultThreshold, tvResultMaxLimit);
             }
         });
 

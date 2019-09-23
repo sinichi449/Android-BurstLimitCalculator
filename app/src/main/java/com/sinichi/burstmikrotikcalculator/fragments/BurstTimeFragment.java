@@ -32,7 +32,7 @@ public class BurstTimeFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+                             final Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         final View root = inflater.inflate(R.layout.fragment_burst_time, container, false);
 
@@ -76,7 +76,7 @@ public class BurstTimeFragment extends Fragment {
         btnClear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Calculate.clearAll(edtBurstLimit, edtInterval, edtThreshold,
+                Calculate.clearAll(savedInstanceState, edtBurstLimit, edtInterval, edtThreshold,
                         tvResultBurstTime, tvResultMaxLimit);
             }
         });

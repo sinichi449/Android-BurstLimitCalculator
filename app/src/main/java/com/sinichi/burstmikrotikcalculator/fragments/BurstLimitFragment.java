@@ -22,7 +22,7 @@ import androidx.fragment.app.Fragment;
 public class BurstLimitFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
+                             ViewGroup container, final Bundle savedInstanceState) {
         final View root = inflater.inflate(R.layout.fragment_burst_limit, container, false);
 
         final LinearLayout linearLayout = root.findViewById(R.id.linearLayout);
@@ -63,7 +63,7 @@ public class BurstLimitFragment extends Fragment {
         btnClear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Calculate.clearAll(edtBurstTime, edtInterval, edtThreshold,
+                Calculate.clearAll(savedInstanceState, edtBurstTime, edtInterval, edtThreshold,
                         tvResultBurstLimit, tvResultMaxLimit);
             }
         });

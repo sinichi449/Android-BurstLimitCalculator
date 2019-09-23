@@ -2,6 +2,7 @@ package com.sinichi.burstmikrotikcalculator.calculation;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -11,6 +12,12 @@ import android.widget.TextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 public class Calculate {
+
+    public static final String BURST_LIMIT = "burstLimit";
+    public static final String INTERVAL = "interval";
+    public static final String BURST_TIME = "burstTime";
+    public static final String MAX_LIMIT = "maxLimit";
+    public static final String THRESHOLD = "threshold";
 
     public static int threshold(int burstLimit, int interval, int burstTime) {
         return (burstLimit * interval) / burstTime;
@@ -32,7 +39,8 @@ public class Calculate {
         return (4 * threshold) / 3;
     }
 
-    public static void clearAll(EditText edt1, EditText edt2, EditText edt3, TextView tvResult1, TextView tvResult2) {
+    public static void clearAll(Bundle savedInstance, EditText edt1, EditText edt2, EditText edt3, TextView tvResult1, TextView tvResult2) {
+        savedInstance.clear();
         edt1.setText("");
         edt2.setText("");
         edt3.setText("");
@@ -58,5 +66,15 @@ public class Calculate {
         if (imm != null) {
             imm.hideSoftInputFromWindow(linearLayout.getWindowToken(), 0);
         }
+    }
+
+    public static void saveInstance(Bundle savedInstance, EditText edt1, EditText edt2,
+                                    EditText edt3, int result1, int result2, String keyForEdt1,
+                                    String keyForEdt2, String keyForEdt3, String keyForResult1, String keyForResult2) {
+        savedInstance.putInt(keyForEdt1, Integer.parseInt(edt1.getText().toString()));
+        savedInstance.putInt(keyForEdt2, Integer.parseInt(edt2.getText().toString()));
+        savedInstance.putInt(keyForEdt3, Integer.parseInt(edt3.getText().toString()));
+        savedInstance.putInt(keyForResult1, result1);
+        savedInstance.putInt(keyForResult2, result2);
     }
 }

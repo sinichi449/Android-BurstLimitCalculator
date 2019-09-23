@@ -22,7 +22,7 @@ import androidx.fragment.app.Fragment;
 public class IntervalFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
+                             ViewGroup container, final Bundle savedInstanceState) {
         final View root = inflater.inflate(R.layout.fragment_interval, container, false);
 
         final ConstraintLayout constraintLayout = root.findViewById(R.id.constrainLayout);
@@ -63,7 +63,7 @@ public class IntervalFragment extends Fragment {
         btnClear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Calculate.clearAll(edtThreshold, edtBurstTime, edtBurstLimit,
+                Calculate.clearAll(savedInstanceState, edtThreshold, edtBurstTime, edtBurstLimit,
                         tvIntervalResult, tvMaxLimitResult);
             }
         });
