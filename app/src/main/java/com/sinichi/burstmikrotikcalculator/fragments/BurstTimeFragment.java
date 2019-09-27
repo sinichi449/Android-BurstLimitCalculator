@@ -76,7 +76,7 @@ public class BurstTimeFragment extends Fragment {
         btnClear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Calculate.clearAll(savedInstanceState, edtBurstLimit, edtInterval, edtThreshold,
+                Calculate.clearAll(edtBurstLimit, edtInterval, edtThreshold,
                         tvResultBurstTime, tvResultMaxLimit);
             }
         });

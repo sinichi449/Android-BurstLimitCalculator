@@ -63,7 +63,7 @@ public class IntervalFragment extends Fragment {
         btnClear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Calculate.clearAll(savedInstanceState, edtThreshold, edtBurstTime, edtBurstLimit,
+                Calculate.clearAll(edtThreshold, edtBurstTime, edtBurstLimit,
                         tvIntervalResult, tvMaxLimitResult);
             }
         });
